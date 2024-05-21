@@ -34,6 +34,12 @@ if ($request->has('inlog')){
     echo "<script>alert('Onjuiste gegevens'); window.location='/inloggen';</script>";
 }
     }
+    public function loginuit(Request $request){
+        session_start();
+        session_destroy();
+        return redirect('/');
+        
+    }
 
     
 }

@@ -16,16 +16,28 @@
     <title>{{ $pageTitle }}</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="/">Woordenspel</a>
-            <ul>
-                <li><a href="/">Home</a></li>
+    
+<?php
+session_start();
+?>
+
+<header>
+    <nav>
+        <a href="/">Woordenspel</a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true): ?>
+                <li><a href="/spelen">spelen</a></li>
+                <li><a href="/userdash">mijn spel</a></li>
+                <li><a href="{{ route('logout') }}">Uitloggen</a></li>
+            <?php else: ?>
                 <li><a href="/inloggen">Inloggen</a></li>
-            </ul>
-            
-        </nav>
-    </header>
+               
+            <?php endif; ?>
+        </ul>
+    </nav>
+</header>
+
 
     @yield('content')
 

@@ -28,13 +28,19 @@ class LoginController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    { 
+    {  // Valideren van de invoervelden
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+        ]);
+    
+        // Nieuwe gebruiker aanmaken en opslaan
         $gebruiker = new User;
-        $gebruiker->name =  $request->input( 'name' );
-        $gebruiker->email = $request->input( 'email' );
-        // $menu->foto = $request->input( 'afbeelding' );
+        $gebruiker->name = $request->input('name');
+        $gebruiker->email = $request->input('email');
         $gebruiker->save();
-        
+    
+        // Doorsturen naar de homepage
         return redirect('/');
     }
 
