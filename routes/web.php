@@ -28,10 +28,11 @@ Route::get('/spelen', function () {
 });
 Route::post('/signup', 'App\Http\Controllers\LoginController@store')->name('item.store');
 Route::post('/admin', 'App\Http\Controllers\Usercheck@login')->name('login');
-Route::get('/logout', 'App\Http\Controllers\Usercheck@loginuit')->name('logout');
+Route::get('/logout', 'App\Http\Controllers\Usercheck@logout')->name('logout');
 
 Route::get('/woordenspel', [WoordenspelController::class, 'index']);
 Route::post('/woordenspel', [WoordenspelController::class, 'raad']);
 Route::post('/woordenspel', 'App\Http\Controllers\WoordenspelController@raad')->name('raad');
 Route::post('/nieuw_spel', [WoordenspelController::class, 'nieuwSpel']);
 Route::post('/nieuw_spel', 'App\Http\Controllers\WoordenspelController@nieuwSpel')->name('nieuwSpel');
+Route::get('/userdash','App\Http\Controllers\Usercheck@profile')->name('profile');

@@ -54,6 +54,7 @@ footer{
     display: flex;
     justify-content: space-between;
     padding: 50px 170px 50px 170px;
+    background-color: #252727;
 }
 footer ul{
     list-style: none;
@@ -64,7 +65,7 @@ footer ul{
 
 footer a{
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .form {
@@ -222,6 +223,75 @@ footer a{
   }
   .hero_spelen h2{
     color: white;
+  }
+  .gebruikerdash{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+   margin: 3rem 0px 3rem 0px;
+
+  }
+  .mijngegens{
+    position: sticky;
+    margin-top: 20px;
+    left: 0px;
+    background-color: rgb(226, 226, 226);
+    padding: 20px;
+    border-radius: 20px;
+  }
+  .vrinden{
+    width: 500px;
+  }
+  .vriend_uitnodigen{
+    width: 500px;
+  }
+  .vriend_item{
+    background-color: rgb(226, 226, 226);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+  .vriend_item a{
+    color: red;
+    text-decoration: none;
+  }
+  .vriendenlijst_item{
+    background-color: rgb(226, 226, 226);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vriendenlijst_item a{
+    text-decoration: none;
+    color: green;
+  }
+  .gebruiker_porfolio{
+    height: 50vh !important;
+  }
+  .spelen{
+    background-color: #ecedec;
+    display: flex;
+    padding: 50px;
+    display: flex;
+    margin: 50px auto;
+    justify-content: center;
+    align-items:center;
+    width: fit-content;
+    border-radius: 20px;
+
+  }
+  .spelen form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   
       

@@ -5,41 +5,40 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use  App\Models\User;
+use App\Models\User;
+
 class Usercheck extends Controller
 {
     public function login(Request $request)
     {
+        $credentials = $request->only('name', 'email'); // Adjust based on actual fields
 
-    session_start();   
-        
-    $users = User::all();
+        $user = User::where('name', $credentials['name'])->where('email', $credentials['email'])->first();
 
-if ($request->has('inlog')){
-    $username = $request->input('name');
-    $password = $request->input('email');
+        if ($user) {
+            Auth::login($user); // This will handle session automatically
 
-    foreach ($users as $user) {
-        $userName = $user->name;
-        $userpas = $user->email;
-
-        if ($username == $userName && $password == $userpas) {
-            $_SESSION['admin_logged_in'] = true;
             return redirect('/userdash');
-            
-           
         }
+
+        return redirect('/inloggen')->with('error', 'Onjuiste gegevens');
     }
 
-    echo "<script>alert('Onjuiste gegevens'); window.location='/inloggen';</script>";
-}
-    }
-    public function loginuit(Request $request){
-        session_start();
-        session_destroy();
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
         return redirect('/');
-        
     }
 
-    
+    public function profile()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            return view('userdash', ['user' => $user, 'pageTitle' => 'User Dash']);
+        }
+
+        return redirect('/inloggen')->with('error', 'Je moet ingelogd zijn om je profiel te bekijken');
+    }
 }

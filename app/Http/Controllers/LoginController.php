@@ -13,7 +13,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -49,7 +49,7 @@ class LoginController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**

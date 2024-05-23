@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,49 +16,41 @@
 </head>
 <body>
     
-<?php
-session_start();
-?>
-
 <header>
     <nav>
         <a href="/">Woordenspel</a>
         <ul>
             <li><a href="/">Home</a></li>
-            <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true): ?>
-                <li><a href="/spelen">spelen</a></li>
-                <li><a href="/userdash">mijn spel</a></li>
+            @if (Auth::check())
+                <li><a href="/spelen">Spelen</a></li>
+                <li><a href="/userdash">Mijn Spel</a></li>
                 <li><a href="{{ route('logout') }}">Uitloggen</a></li>
-            <?php else: ?>
+            @else
                 <li><a href="/inloggen">Inloggen</a></li>
-               
-            <?php endif; ?>
+            @endif
         </ul>
     </nav>
 </header>
 
+@yield('content')
 
-    @yield('content')
-
-
-    
-    <footer>
-        <div class="footer-menu">
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/">Menu</a></li>
-                <li><a href="/">Over ons</a></li>
-                <li><a href="/">Contact</a></li>
-            </ul>
-        </div>
-        <div class="privcy">
-         <ul>
+<footer>
+    <div class="footer-menu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/">Menu</a></li>
+            <li><a href="/">Over ons</a></li>
+            <li><a href="/">Contact</a></li>
+        </ul>
+    </div>
+    <div class="privcy">
+        <ul>
             <li><a href="/">Voorwaarden</a></li>
             <li><a href="/">Bestellen</a></li>
             <li><a href="/">Privacybeleid</a></li>
             <li><a href="/">Sitemap</a></li>
-         </ul>
-        </div>
-    </footer>
+        </ul>
+    </div>
+</footer>
 </body>
 </html>
