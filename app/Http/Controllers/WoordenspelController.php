@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Game;
 
 class WoordenspelController extends Controller
 {
-    private $woorden = ["appel", "banaan", "kers", "druif", "mango", "peer", "perzik", "pruim", "watermeloen", "sinaasappel"];
+    private $woorden = ["appel", "banaan", "kers"];
 
     public function index(Request $request)
     {
@@ -16,9 +19,10 @@ class WoordenspelController extends Controller
 
         $bericht = $request->session()->get('bericht', 'Raad het woord! Je hebt 4 pogingen.');
         $pogingen = $request->session()->get('pogingen', 4);
-        
+        $geraden = $request->session()->get('geraden', false);
+        $user = Auth::check() ? Auth::user() : null;
 
-        return view('spelen', compact('bericht', 'pogingen')); // Stuur het woord naar de view
+        return view('spelen', compact('bericht', 'pogingen', 'geraden','user'));
     }
 
     public function raad(Request $request)
@@ -27,6 +31,7 @@ class WoordenspelController extends Controller
 
         if ($geradenWoord == $request->session()->get('woord')) {
             $request->session()->put('bericht', "Gefeliciteerd! Je hebt het woord geraden: " . $request->session()->get('woord'));
+
             $request->session()->put('geraden', true);
         } else {
             $pogingen = $request->session()->decrement('pogingen');
@@ -54,4 +59,27 @@ class WoordenspelController extends Controller
         $request->session()->put('geraden', false);
         $request->session()->put('bericht', "Raad het woord! Je hebt 4 pogingen.");
     }
+   
+
+    public function gameresualt(Request $request)
+    {  // Valideren van de invoervelden
+        
+    
+        // Nieuwe gebruiker aanmaken en opslaan
+        $gebruiker = new Game;
+        $gebruiker->name = $request->input('name');
+        $gebruiker->massage = $request->input('massage');
+        $gebruiker->resualt = $request->input('resualt');
+        $gebruiker->save();
+    
+        // Doorsturen naar de homepage
+        return redirect('/userdash');
+    }
+
+    public function showGame(){
+        $pageTitle = "welcome";
+       $games = Game::all();
+       return view('welcome', compact('pageTitle', 'games'));
+    }
+
 }

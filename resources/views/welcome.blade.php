@@ -13,4 +13,19 @@
         <img src="/asste/img/woordenspel.jpg" alt="woordenspel">
        </div>
      </div>
+      
+     <div class="Game-re">
+       <h2>Gespeelde Games </h2>
+       @foreach ($games as $item)
+           <div class="game_items">
+               <h2>{{ $item['name'] }}</h2>
+               <p>{{ $item['massage'] }}</p>
+               <p>{{ $item['resualt'] }}</p>
+               <p>{{ $item['created_at'] }}</p>
+           </div>
+       @endforeach
+   
+   
+   
+           </div>
     @endsection

@@ -293,5 +293,49 @@ footer a{
     flex-direction: column;
     gap: 10px;
   }
+
+  .toevoegen-form{
+    background-color: #666666;
+    border-radius: 10px;
+    padding: 50px;
+
+  }
+  .titel{
+    color: white;
+  }
+  .toevoegen-form form input{
+    width: 400px;
+    border: none;
+    margin-bottom: 10px;
+  }
+  .toevoegen-form form button{
+    background-color: #2d79f3;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+
+  }
+  .toevoegen-form form a{
+    text-decoration: none;
+    color: white;
+    margin-left:185px;
+  }
+  .game{
+    width: 400px;
+  }
+  .Game-re{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 130px;
+  }
+  .game_items{
+    padding: 20px;
+    background-color: #ecedec;
+    border-radius: 10px;
+  }
   
       

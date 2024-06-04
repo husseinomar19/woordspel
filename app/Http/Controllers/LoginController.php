@@ -57,7 +57,11 @@ class LoginController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pageTitle = "Gebruiker Update";
+        return view('aanpassen', [
+            'item' => User::findOrFail($id),
+            'pageTitle' => $pageTitle
+        ]);
     }
 
     /**
@@ -65,7 +69,12 @@ class LoginController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $update = User::findOrFail($id);
+        $update->name = $request->input('naamitem');
+        $update->email = $request->input('prijs');
+        $update->save();
+        
+        return redirect('/userdash');
     }
 
     /**

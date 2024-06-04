@@ -33,12 +33,24 @@ class Usercheck extends Controller
 
     public function profile()
     {
-        if (Auth::check()) {
-            $user = Auth::user();
+            if (Auth::check()) {
+                $user = Auth::user();
 
-            return view('userdash', ['user' => $user, 'pageTitle' => 'User Dash']);
-        }
+                return view('userdash', ['user' => $user, 'pageTitle' => 'User Dash']);
+            }
 
         return redirect('/inloggen')->with('error', 'Je moet ingelogd zijn om je profiel te bekijken');
+    
+    }
+    public function game()
+    {
+            if (Auth::check()) {
+                $user = Auth::user();
+
+                return view('spelen', ['user' => $user, 'pageTitle' => 'Spelen']);
+            }
+
+        
+    
     }
 }

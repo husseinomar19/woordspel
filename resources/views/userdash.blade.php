@@ -8,6 +8,7 @@
         <h1>Welkom, {{ $user->name }}</h1>
         <h3>Email: {{ $user->email }}</h3>
         <h4>Speler sinds: {{ $user->created_at }}</h4>
+        <a href="{{ route('aanpassen', ['id' => $user->id]) }}">Gegevens aanpassen</a>
      </div>
      <div class="vrinden">
      <h2>Mijn Vrienden</h2>
