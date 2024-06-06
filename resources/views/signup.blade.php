@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <div class="inloggen">
-    <form class="form" action="{{ route('item.store') }}" method="post">
+    <form class="form" action="{{ route('adduser') }}" method="post">
         @csrf <!-- CSRF-token toevoegen -->
         <div class="flex-column">
             <label>Name </label>

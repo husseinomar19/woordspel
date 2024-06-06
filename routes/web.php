@@ -26,7 +26,7 @@ Route::get('/spelen', function () {
     $pageTitle = "Spelen";
     return view('spelen',compact('pageTitle'));
 });
-Route::post('/signup', 'App\Http\Controllers\LoginController@store')->name('item.store');
+Route::post('/signup', 'App\Http\Controllers\LoginController@store')->name('adduser');
 Route::post('/admin', 'App\Http\Controllers\Usercheck@login')->name('login');
 Route::get('/logout', 'App\Http\Controllers\Usercheck@logout')->name('logout');
 
@@ -36,6 +36,8 @@ Route::post('/woordenspel', 'App\Http\Controllers\WoordenspelController@raad')->
 Route::post('/nieuw_spel', [WoordenspelController::class, 'nieuwSpel']);
 Route::post('/nieuw_spel', 'App\Http\Controllers\WoordenspelController@nieuwSpel')->name('nieuwSpel');
 Route::get('/userdash','App\Http\Controllers\Usercheck@profile')->name('profile');
+Route::get('/userdash','App\Http\Controllers\WoordenspelController@showUserDash')->name('alluser');
+Route::get('/userdash','App\Http\Controllers\WoordenspelController@showProfile')->name('showfriends');
 Route::get('/spelen','App\Http\Controllers\Usercheck@game')->name('game');
 
 
@@ -44,3 +46,7 @@ Route::put('/userupdate/{id}', 'App\Http\Controllers\LoginController@update')->n
 Route::get('/aanpassen/{id}', 'App\Http\Controllers\LoginController@edit')->name('aanpassen');
 Route::post('/spelen', 'App\Http\Controllers\WoordenspelController@gameresualt')->name('item.store');
 Route::get('/','App\Http\Controllers\WoordenspelController@showGame')->name('showGame');
+Route::post('/userdash','App\Http\Controllers\WoordenspelController@addFriend')->name('addFriend');
+
+
+

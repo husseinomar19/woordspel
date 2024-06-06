@@ -82,4 +82,59 @@ class WoordenspelController extends Controller
        return view('welcome', compact('pageTitle', 'games'));
     }
 
+   //show users behaf ingelode user 
+    public function showUserDash()
+    {
+        $pageTitle = "User Dash";
+        $user = Auth::user();
+        $users = User::where('id', '!=', $user->id)->get();
+        
+        return view('userdash', compact('users', 'user' ,'pageTitle' ));
+    }
+
+  //add friend 
+  public function addFriend(Request $request)
+  {
+      $user = Auth::user();
+      $friendEmail = $request->input('friend_id');
+      
+      // Zoek de vriend op basis van het e-mailadres
+      $friend = User::where('id', $friendEmail)->first();
+      
+      if ($friend && $friend->id !== $user->id) {
+          $user->friends()->attach($friend->id);
+          return redirect()->back()->with('success', 'Friend added successfully');
+      }
+
+      return redirect()->back()->with('error', 'Friend not found or you cannot add yourself');
+  }
+
+//remove friend 
+public function removeFriend($friendId)
+{
+    $user = Auth::user();
+    $user->friends()->detach($friendId);
+
+    return redirect()->back()->with('success', 'Friend removed successfully');
+}
+
+
+//show friend 
+
+public function showProfile()
+{
+    $pageTitle = "User Dash";
+    $user = Auth::user();
+    $friends = $user->allFriends()->get();
+
+    return view('profile', compact('user', 'friends','pageTitle'));
+}
+
+
+
+
+
+
+
+
 }
