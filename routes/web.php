@@ -36,8 +36,10 @@ Route::post('/woordenspel', 'App\Http\Controllers\WoordenspelController@raad')->
 Route::post('/nieuw_spel', [WoordenspelController::class, 'nieuwSpel']);
 Route::post('/nieuw_spel', 'App\Http\Controllers\WoordenspelController@nieuwSpel')->name('nieuwSpel');
 Route::get('/userdash','App\Http\Controllers\Usercheck@profile')->name('profile');
-Route::get('/userdash','App\Http\Controllers\WoordenspelController@showUserDash')->name('alluser');
+
+Route::get('/vrienden','App\Http\Controllers\WoordenspelController@showGebruikerDash')->name('alluser');
 Route::get('/userdash','App\Http\Controllers\WoordenspelController@showProfile')->name('showfriends');
+Route::post('/userdash/{id}','App\Http\Controllers\WoordenspelController@removeFriend')->name('removefriends');
 Route::get('/spelen','App\Http\Controllers\Usercheck@game')->name('game');
 
 

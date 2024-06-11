@@ -60,4 +60,23 @@ class User extends Authenticatable
     {
         return $this->friends()->union($this->friendOf());
     }
+
+
+    //userfriend shoe
+    public function vrienden()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
+            ->select('users.*', 'friends.user_id as pivot_user_id', 'friends.friend_id as pivot_friend_id');
+    }
+
+    public function vriendenof()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')
+            ->select('users.*', 'friends.user_id as pivot_user_id', 'friends.friend_id as pivot_friend_id');
+    }
+
+    public function allVrienden()
+    {
+        return $this->vrienden()->union($this->vriendenof());
+    }
 }

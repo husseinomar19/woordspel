@@ -83,13 +83,13 @@ class WoordenspelController extends Controller
     }
 
    //show users behaf ingelode user 
-    public function showUserDash()
+    public function showGebruikerDash()
     {
         $pageTitle = "User Dash";
         $user = Auth::user();
         $users = User::where('id', '!=', $user->id)->get();
         
-        return view('userdash', compact('users', 'user' ,'pageTitle' ));
+        return view('vrienden', compact('users', 'user' ,'pageTitle' ));
     }
 
   //add friend 
@@ -125,9 +125,9 @@ public function showProfile()
 {
     $pageTitle = "User Dash";
     $user = Auth::user();
-    $friends = $user->allFriends()->get();
+    $friends = $user->allVrienden()->get();
 
-    return view('profile', compact('user', 'friends','pageTitle'));
+    return view('userdash', compact('user', 'friends','pageTitle'));
 }
 
 
