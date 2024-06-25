@@ -49,6 +49,12 @@ Route::get('/aanpassen/{id}', 'App\Http\Controllers\LoginController@edit')->name
 Route::post('/spelen', 'App\Http\Controllers\WoordenspelController@gameresualt')->name('item.store');
 Route::get('/','App\Http\Controllers\WoordenspelController@showGame')->name('showGame');
 Route::post('/userdash','App\Http\Controllers\WoordenspelController@addFriend')->name('addFriend');
+Route::get('/metvriend','App\Http\Controllers\WoordenspelController@showProfilespelen')->name('showfriends');
 
 
+Route::get('/metvriendspelen','App\Http\Controllers\GameController@index' )->name('spelen.index');
+Route::post('/metvriendspelen','App\Http\Controllers\GameController@nieuwSpel')->name('spelen.nieuw');
+Route::post('/metvriendspelen', 'App\Http\Controllers\GameController@raad')->name('spelen.raad');
+Route::post('/metvriendspelen/{game}','App\Http\Controllers\GameController@startWithFriend')->name('spelen.startWithFriend');
+Route::post('/metvriendspelen/{game}', 'App\Http\Controllers\GameController@raadWithFriend')->name('spelen.raadWithFriend');
 

@@ -129,6 +129,14 @@ public function showProfile()
 
     return view('userdash', compact('user', 'friends','pageTitle'));
 }
+public function showProfilespelen()
+{
+    $pageTitle = "Met vriend spelen";
+    $user = Auth::user();
+    $friends = $user->allVrienden()->get();
+
+    return view('metvriend', compact('user', 'friends','pageTitle'));
+}
 
 
 

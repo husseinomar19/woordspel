@@ -24,6 +24,7 @@
             @if (Auth::check())
                 <li><a href="/spelen">Spelen</a></li>
                 <li><a href="/userdash">Mijn Spel</a></li>
+                <li><a href="/metvriendspelen">Met Vriend spelen</a></li>
                 <li><a href="{{ route('logout') }}">Uitloggen</a></li>
             @else
                 <li><a href="/inloggen">Inloggen</a></li>

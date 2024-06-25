@@ -79,4 +79,7 @@ class User extends Authenticatable
     {
         return $this->vrienden()->union($this->vriendenof());
     }
+
+
+
 }
